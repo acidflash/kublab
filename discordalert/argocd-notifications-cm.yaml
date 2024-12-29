@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-notifications-cm
+data:
+  service.webhook.discord: |
+    url: $discord-webhook-url
+    headers:
+      - name: Content-Type
+        value: application/json
+  template.sync-notification: |
+    webhook:
+      discord:
+        method: POST
+        body: |
+          {
+            "embeds": [
+              {
+                "title": "Applikation {{.app.metadata.name}} har synkroniserats",
+                "url": "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
+                "fields": [
+                  {
+                    "name": "Synkroniseringsstatus",
+                    "value": "{{.app.status.sync.status}}",
+                    "inline": true
+                  },
+                  {
+                    "name": "Hälsostatus",
+                    "value": "{{.app.status.health.status}}",
+                    "inline": true
+                  }
+                ]
+              }
+            ]
+          }
+  trigger.on-sync-succeeded: |
+    - when: app.status.operationState.phase in ['Succeeded']
+      send: [sync-notification]
