@@ -1,0 +1,14 @@
+project: default
+source:
+  repoURL: https://github.com/acidflash/kublab.git
+  path: nginx-project
+  targetRevision: main
+destination:
+  server: https://kubernetes.default.svc
+  namespace: nginx-external
+syncPolicy:
+  automated:
+    prune: true
+    selfHeal: true
+  syncOptions:
+    - CreateNamespace=true
