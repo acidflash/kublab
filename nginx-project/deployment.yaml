@@ -28,10 +28,17 @@ spec:
         - name: nginx-storage
           mountPath: /usr/share/nginx/html
       containers:
-      - name: php-fpm
-        image: php:8.1-fpm
+      - name: nginx
+        image: nginx:latest
         ports:
         - containerPort: 80
+        volumeMounts:
+        - name: nginx-storage
+          mountPath: /usr/share/nginx/html
+        - name: nginx-config
+          mountPath: /etc/nginx/conf.d
+      - name: php-fpm
+        image: php:8.1-fpm
         volumeMounts:
         - name: nginx-storage
           mountPath: /usr/share/nginx/html
@@ -39,3 +46,6 @@ spec:
       - name: nginx-storage
         persistentVolumeClaim:
           claimName: nginx-pvc
+      - name: nginx-config
+        configMap:
+          name: nginx-config
