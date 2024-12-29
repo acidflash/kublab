@@ -4,14 +4,16 @@ metadata:
   name: nginx-external-app
   namespace: argocd
 spec:
-  project: default
+  destination:
+    name: ''
+    namespace: nginx-external
+    server: https://kubernetes.default.svc
   source:
+    path: nginx-project
     repoURL: https://github.com/acidflash/kublab.git
     targetRevision: main
-    path: nginx-project
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: nginx-external
+  sources: []
+  project: default
   syncPolicy:
     automated:
       prune: true

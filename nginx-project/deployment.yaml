@@ -15,6 +15,18 @@ spec:
       labels:
         app: nginx
     spec:
+      initContainers:
+      - name: fetch-git-files
+        image: alpine/git:latest
+        command:
+        - sh
+        - -c
+        - >
+          git clone https://github.com/acidflash/1j.se.git /tmp/repo &&
+          cp -r /tmp/repo/* /usr/share/nginx/html/;
+        volumeMounts:
+        - name: nginx-storage
+          mountPath: /usr/share/nginx/html
       containers:
       - name: nginx
         image: nginx:latest
