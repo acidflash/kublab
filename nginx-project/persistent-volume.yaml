@@ -9,4 +9,4 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: /data/nginx
+    path: /usr/share/nginx/html
