@@ -28,8 +28,8 @@ spec:
         - name: nginx-storage
           mountPath: /usr/share/nginx/html
       containers:
-      - name: nginx
-        image: nginx:latest
+      - name: php-fpm
+        image: php:8.1-fpm
         ports:
         - containerPort: 80
         volumeMounts:
