@@ -1,14 +1,33 @@
-# NGINX Kubernetes Deployment with ArgoCD
-
-This repository contains the manifests for deploying an NGINX application in Kubernetes using ArgoCD.
-
-## Directory Structure
-- `namespace.yaml`: Creates the `nginx-external` namespace.
-- `deployment.yaml`: Deploys the NGINX application.
-- `persistent-volume.yaml`: Defines a PersistentVolume for data persistence.
-- `persistent-volume-claim.yaml`: Claims the PersistentVolume.
-- `service.yaml`: Exposes the application using a LoadBalancer.
-
-## Deployment Steps
-1. Apply the ArgoCD Application manifest pointing to this repository and path `nginx-project`.
-2. Sync the application using ArgoCD to deploy the resources.
+    .
+    ├── cloudflare
+    │   ├── application.yaml
+    │   ├── rensa.yaml.OFF
+    │   ├── testpod.yaml.OFF
+    │   ├── tunnel-config.yaml
+    │   ├── tunnel-secrets.yaml
+    │   └── update-tunnel-config.yaml
+    ├── discordalert
+    │   ├── argocd-notifications-cm.yaml
+    │   └── argocd-notifications-secret.yaml
+    ├── elk
+    │   └── base
+    │       ├── elasticsearch
+    │       │   ├── deployment.yaml
+    │       │   ├── pvc.yaml
+    │       │   └── service.yaml
+    │       ├── kibana
+    │       │   ├── deployment.yaml
+    │       │   └── service.yaml
+    │       ├── logstash
+    │       │   ├── configmap.yaml
+    │       │   ├── deployment.yaml
+    │       │   └── service.yaml
+    │       └── namespace.yaml
+    └── nginx-project
+        ├── application.yaml
+        ├── deployment.yaml
+        ├── namespace.yaml
+        ├── nginx-config.yaml
+        ├── persistent-volume-claim.yaml
+        ├── persistent-volume.yaml
+        └── service.yaml
