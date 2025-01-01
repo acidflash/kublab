@@ -4,7 +4,7 @@ metadata:
   name: update-tunnel-config
   namespace: argocd
 spec:
-  schedule: "*/5 * * * *" # Kör en gång i timmen
+  schedule: "*/5 * * * *"
   jobTemplate:
     spec:
       template:
@@ -21,15 +21,21 @@ spec:
               TUNNEL_ID=$(cat /etc/secrets/TUNNEL_ID)
               NEW_CONFIG="$(cat /etc/tunnel-config/new_config)"
               URL="https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/cfd_tunnel/${TUNNEL_ID}/configurations"
-              RESPONSE=$(curl -s -o /response.json -w "%{http_code}" -X PUT "$URL" \
+
+              echo "Skickar PUT-förfrågan till $URL..."
+              echo "Payload: $NEW_CONFIG"
+
+              RESPONSE=$(curl -s -o /tmp/response.json -w "%{http_code}" -X PUT "$URL" \
                 -H "Authorization: Bearer $API_TOKEN" \
                 -H "Content-Type: application/json" \
                 -d "$NEW_CONFIG")
+
               if [ "$RESPONSE" -eq 200 ]; then
-                echo "Tunnelkonfigurationen har uppdaterats framgångsrikt."
+                  echo "Tunnelkonfigurationen har uppdaterats framgångsrikt."
               else
-                echo "Fel vid uppdatering av tunnelkonfiguration: HTTP-statuskod $RESPONSE"
-                cat /response.json
+                  echo "Fel vid uppdatering av tunnelkonfiguration: HTTP-statuskod $RESPONSE"
+                  echo "Respons från API:"
+                  cat /tmp/response.json || echo "Ingen respons från API."
               fi
             volumeMounts:
             - name: tunnel-config-volume

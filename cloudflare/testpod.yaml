@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug-tunnel
+  namespace: argocd
+spec:
+  containers:
+  - name: debug
+    image: curlimages/curl:latest
+    command: [ "sleep", "3600" ]
+    volumeMounts:
+    - name: tunnel-config-volume
+      mountPath: /etc/tunnel-config
+      readOnly: true
+    - name: secrets-volume
+      mountPath: /etc/secrets
+      readOnly: true
+  volumes:
+  - name: tunnel-config-volume
+    configMap:
+      name: tunnel-config
+  - name: secrets-volume
+    secret:
+      secretName: tunnel-secrets
+  restartPolicy: Never
