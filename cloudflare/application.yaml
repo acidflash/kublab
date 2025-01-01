@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: update-tunnel-config
-  namespace: argocd
+  namespace: cronjobs
 spec:
   project: default
   source:
