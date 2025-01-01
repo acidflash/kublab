@@ -4,7 +4,7 @@ metadata:
   name: update-tunnel-config
   namespace: argocd
 spec:
-  schedule: "0 * * * *" # Kör en gång i timmen
+  schedule: "*/5 * * * *" # Kör en gång i timmen
   jobTemplate:
     spec:
       template:
