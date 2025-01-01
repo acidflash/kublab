@@ -2,7 +2,7 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: update-tunnel-config
-  namespace: cronjobs
+  namespace: argocd
 spec:
   schedule: "0 * * * *" # Kör en gång i timmen
   jobTemplate:
