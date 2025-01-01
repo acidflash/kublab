@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: clean-complete-jobs
+  namespace: argo
+spec:
+  schedule: "0 0 * * *" # Kör en gång per dag vid midnatt
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: cleanup
+            image: bitnami/kubectl:latest # Eller vilken kubectl-bild som helst
+            command:
+            - /bin/sh
+            - -c
+            - |
+              echo "Rensar avslutade jobb i namespace 'argo'..."
+              kubectl delete job -n argo --field-selector=status.successful=1
+              echo "Rensning klar."
+          restartPolicy: OnFailure
