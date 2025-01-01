@@ -2,7 +2,7 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: clean-complete-jobs
-  namespace: argo
+  namespace: argocd
 spec:
   schedule: "0 0 * * *" # Kör en gång per dag vid midnatt
   jobTemplate:
