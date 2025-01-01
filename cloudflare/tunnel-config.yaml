@@ -1,0 +1,71 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tunnel-config
+data:
+  new_config: |
+    {
+        "config": {
+            "ingress": [
+                {
+                    "hostname": "acidflash.se",
+                    "service": "http://192.168.32.4"
+                },
+                {
+                    "hostname": "www.acidflash.se",
+                    "service": "http://192.168.32.4"
+                },
+                {
+                    "hostname": "bonahojden.se",
+                    "service": "http://192.168.32.23"
+                },
+                {
+                    "hostname": "www.bonahojden.se",
+                    "service": "http://192.168.32.23"
+                },
+                {
+                    "hostname": "acidflash.se",
+                    "service": "http://192.168.32.4"
+                },
+                {
+                    "hostname": "www.acidflash.se",
+                    "service": "http://192.168.32.4"
+                },
+                {
+                    "hostname": "kublab.online",
+                    "service": "http://192.168.32.4"
+                },
+                {
+                    "hostname": "www.kublab.online",
+                    "service": "http://192.168.32.4"
+                },
+                {
+                    "hostname": "kublab.se",
+                    "service": "http://192.168.32.4"
+                },
+                {
+                    "hostname": "www.kublab.se",
+                    "service": "http://192.168.32.4"
+                },
+                {
+                    "hostname": "shadowit.se",
+                    "service": "http://192.168.32.4"
+                },
+                {
+                    "hostname": "www.shadowit.se",
+                    "service": "http://192.168.32.4"
+                },
+                {
+                    "hostname": "labnat.online",
+                    "service": "http://192.168.32.4"
+                },
+                {
+                    "hostname": "www.labnat.online",
+                    "service": "http://192.168.32.4"
+                },
+                {
+                    "service": "http_status:404"
+                }
+            ]
+        }
+    }

@@ -1,0 +1,48 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: update-tunnel-config
+  namespace: argo
+spec:
+  schedule: "0 * * * *" # Kör en gång i timmen
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: update-tunnel
+            image: curlimages/curl:latest
+            command:
+            - /bin/sh
+            - -c
+            - |
+              API_TOKEN=$(cat /etc/secrets/API_TOKEN)
+              ACCOUNT_ID=$(cat /etc/secrets/ACCOUNT_ID)
+              TUNNEL_ID=$(cat /etc/secrets/TUNNEL_ID)
+              NEW_CONFIG="$(cat /etc/tunnel-config/new_config)"
+              URL="https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/cfd_tunnel/${TUNNEL_ID}/configurations"
+              RESPONSE=$(curl -s -o /response.json -w "%{http_code}" -X PUT "$URL" \
+                -H "Authorization: Bearer $API_TOKEN" \
+                -H "Content-Type: application/json" \
+                -d "$NEW_CONFIG")
+              if [ "$RESPONSE" -eq 200 ]; then
+                echo "Tunnelkonfigurationen har uppdaterats framgångsrikt."
+              else
+                echo "Fel vid uppdatering av tunnelkonfiguration: HTTP-statuskod $RESPONSE"
+                cat /response.json
+              fi
+            volumeMounts:
+            - name: tunnel-config-volume
+              mountPath: /etc/tunnel-config
+              readOnly: true
+            - name: secrets-volume
+              mountPath: /etc/secrets
+              readOnly: true
+          restartPolicy: OnFailure
+          volumes:
+          - name: tunnel-config-volume
+            configMap:
+              name: tunnel-config
+          - name: secrets-volume
+            secret:
+              secretName: tunnel-secrets
