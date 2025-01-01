@@ -64,6 +64,10 @@ data:
                     "service": "http://192.168.32.4"
                 },
                 {
+                    "hostname": "test123.labnat.online",
+                    "service": "http://192.168.32.4"
+                },
+                {
                     "service": "http_status:404"
                 }
             ]
