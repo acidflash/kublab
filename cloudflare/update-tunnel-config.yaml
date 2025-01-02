@@ -4,7 +4,7 @@ metadata:
   name: update-tunnel-config
   namespace: argocd
 spec:
-  schedule: "*/30 * * * *"
+  schedule: "*/10 * * * *"
   jobTemplate:
     spec:
       ttlSecondsAfterFinished: 3600 # Rensa efter 1 timme
