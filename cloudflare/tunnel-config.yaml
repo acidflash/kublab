@@ -65,7 +65,7 @@ data:
                 },
                 {
                     "hostname": "argocd.labnat.xyz",
-                    "service": "https://192.168.34.151"
+                    "service": "https://192.168.34.151",
                     "noTLSVerify": true
                 },
                 {
