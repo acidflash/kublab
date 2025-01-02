@@ -64,6 +64,10 @@ data:
                     "service": "http://192.168.32.4"
                 },
                 {
+                    "hostname": "argocd.labnat.xyz",
+                    "service": "http://192.168.32.151"
+                },
+                {
                     "service": "http_status:404"
                 }
             ]
