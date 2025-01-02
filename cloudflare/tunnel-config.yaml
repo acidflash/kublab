@@ -71,6 +71,7 @@ data:
                         "audTag": [
                             "ArgoCD"
                         ],
+                        "teamName": "labnat",
                         "required": true
                         },
                        "noTLSVerify": true
