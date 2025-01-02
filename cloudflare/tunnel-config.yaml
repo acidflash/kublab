@@ -68,7 +68,7 @@ data:
                     "service": "https://192.168.34.151",
                     "originRequest": {
                        "noTLSVerify": true,
-                    },
+                    }
                 },
                 {
                     "service": "http_status:404"
