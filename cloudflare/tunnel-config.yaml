@@ -66,8 +66,9 @@ data:
                 {
                     "hostname": "argocd.labnat.xyz",
                     "service": "https://192.168.34.151",
-                    "noTLSVerify": true,
-                    "httpHostHeader": "httpHostHeader"
+                    "originRequest": {
+                       "noTLSVerify": true,
+                    },
                 },
                 {
                     "service": "http_status:404"
