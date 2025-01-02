@@ -67,7 +67,11 @@ data:
                     "hostname": "argocd.labnat.xyz",
                     "service": "https://192.168.34.151",
                     "originRequest": {
-                        "noTLSVerify": true
+                        "access": {
+                        "teamName": "ArgoCD",
+                        "required": true
+                        },
+                       "noTLSVerify": true
                     }
                 },
                 {
