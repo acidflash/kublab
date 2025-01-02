@@ -7,7 +7,7 @@ spec:
   schedule: "*/10 * * * *"
   jobTemplate:
     spec:
-      ttlSecondsAfterFinished: 3600 # Rensa efter 1 timme
+      ttlSecondsAfterFinished: 1800 # Rensa efter 30 minuter
       template:
         spec:
           containers:
