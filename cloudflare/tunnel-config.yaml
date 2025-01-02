@@ -68,7 +68,9 @@ data:
                     "service": "https://192.168.34.151",
                     "originRequest": {
                         "access": {
-                        "teamName": "ArgoCD",
+                        "audTag": [
+                            "ArgoCD"
+                        ],
                         "required": true
                         },
                        "noTLSVerify": true
