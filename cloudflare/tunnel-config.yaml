@@ -74,7 +74,8 @@ data:
                         "teamName": "labnat",
                         "required": true
                         },
-                       "noTLSVerify": true
+                       "noTLSVerify": true,
+                       "httpHostHeader": "ArgoCD",
                     }
                 },
                 {
