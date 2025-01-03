@@ -69,13 +69,12 @@ data:
                     "originRequest": {
                         "access": {
                         "audTag": [
-                            "ArgoCD"
+                            "c32b28b1-5db1-4d29-9ec9-86280a1c4dcf"
                         ],
                         "teamName": "labnat",
                         "required": true
                         },
-                       "noTLSVerify": true,
-                       "httpHostHeader": "ArgoCD"
+                       "noTLSVerify": true
                     }
                 },
                 {
