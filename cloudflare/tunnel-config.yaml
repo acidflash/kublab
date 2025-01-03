@@ -75,7 +75,7 @@ data:
                         "required": true
                         },
                        "noTLSVerify": true,
-                       "httpHostHeader": "ArgoCD",
+                       "httpHostHeader": "ArgoCD"
                     }
                 },
                 {
